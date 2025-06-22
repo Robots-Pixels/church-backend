@@ -3,11 +3,19 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import contactRoutes from './routes/contact.routes.js';
+import authRoutes from './routes/auth.routes.js';
+
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
@@ -17,6 +25,8 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.error("❌ MongoDB Error:", err));
 
 app.use('/api/contacts', contactRoutes);
+app.use('/api/auth', authRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('🚀 API Contact App is running');
