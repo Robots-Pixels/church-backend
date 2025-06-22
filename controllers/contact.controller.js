@@ -44,3 +44,17 @@ export const createContact = async (req, res) => {
      });
   }
 };
+
+export const deleteContact = async (req, res) => {
+  const { telephone } = req.body;
+  if (!telephone) return res.status(400).json({ error: "Téléphone requis" });
+
+  try {
+    const result = await Contact.deleteOne({ telephone });
+    if (result.deletedCount === 0) return res.status(404).json({ error: "Contact non trouvé" });
+    res.status(200).json({ message: "Contact supprimé" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+};
