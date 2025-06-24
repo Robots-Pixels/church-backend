@@ -56,7 +56,7 @@ export const adminSignUp = async (req, res) => {
 
     return res.status(200).json({
       status: true,
-      message: "Admin créé avec succès."
+      message: "Merci. Votre compte Admin a été créé avec succès! veillez m'avertir s'il vous plait."
     });
 
   } catch (error) {
