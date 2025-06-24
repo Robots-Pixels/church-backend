@@ -5,7 +5,6 @@ import cors from 'cors';
 import contactRoutes from './routes/contact.routes.js';
 import authRoutes from './routes/auth.routes.js';
 
-
 dotenv.config();
 
 const app = express();
@@ -35,3 +34,4 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
 });
+
